@@ -1,6 +1,6 @@
 import os
 
-def replace_string_in_p3d_files(directory, paths):
+def repath(directory, paths):
     if not os.path.isdir(directory):
         print(f"The directory {directory} does not exist.")
         return
@@ -36,4 +36,4 @@ if __name__ == "__main__":
     parser.add_argument("directory", type=str, help="The directory containing .p3d files")
     parser.add_argument("-p", type=str, default="paths.txt", help="The path to the file containing all paths")
     args = parser.parse_args()
-    replace_string_in_p3d_files(args.directory, args.p)
+    repath(args.directory, args.p)
