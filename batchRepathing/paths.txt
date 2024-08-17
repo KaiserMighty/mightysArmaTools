@@ -1,0 +1,6 @@
+"121_tacdevron_troop\data\g3\" "121_tacdevron_uniforms\data\"
+"121_tacdevron_troop\data\pcu\" "121_tacdevron_uniforms\data\"
+"121_tacdevron_troop\data\rugby\" "121_tacdevron_uniforms\data\"
+"121_tacdevron_troop\data\shoes\" "121_tacdevron_uniforms\data\"
+"121_tacdevron_troop\data\watch\" "121_tacdevron_uniforms\data\"
+"121_tacdevron_troop\data\gloves\" "121_tacdevron_uniforms\data\"
