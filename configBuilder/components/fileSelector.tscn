@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs8tgpveadbri"]
+
+[ext_resource type="Script" path="res://components/file_selector.gd" id="1_cy3cu"]
+
+[node name="FileSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -617.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cy3cu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+
+[node name="SaveButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Save
+"
+
+[node name="SaveAsButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Save As"
+
+[node name="LoadButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Load"
+
+[node name="FilePath" type="LineEdit" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "No File Selected"
+editable = false
+context_menu_enabled = false
+
+[node name="SaveDialog" type="FileDialog" parent="."]
+initial_position = 2
+size = Vector2i(704, 720)
+ok_button_text = "Save"
+access = 2
+filters = PackedStringArray("*.cfg")
+
+[node name="LoadDialog" type="FileDialog" parent="."]
+auto_translate_mode = 1
+title = "Open a File"
+initial_position = 2
+size = Vector2i(704, 720)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.cfg")
+
+[connection signal="pressed" from="HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/SaveAsButton" to="." method="_on_saveas_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="file_selected" from="SaveDialog" to="." method="_on_save_dialog_file_selected"]
+[connection signal="file_selected" from="LoadDialog" to="." method="_on_load_dialog_file_selected"]

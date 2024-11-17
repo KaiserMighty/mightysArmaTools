@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://drs8bc4hgb4f5"]
+
+[ext_resource type="Script" path="res://components/one_selector.gd" id="1_bkmgu"]
+
+[node name="OneItemSelector" type="Window"]
+title = "Title"
+initial_position = 2
+size = Vector2i(400, 400)
+script = ExtResource("1_bkmgu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "+
+"
+
+[node name="Confirm" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Confirm"
+
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Confirm" to="." method="_on_confirm_pressed"]

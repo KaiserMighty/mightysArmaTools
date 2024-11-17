@@ -1,0 +1,101 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxysrhlmr7us6"]
+
+[ext_resource type="PackedScene" uid="uid://bs8tgpveadbri" path="res://components/fileSelector.tscn" id="1_53nhg"]
+[ext_resource type="Script" path="res://divisions/uniform_builder.gd" id="1_onbbx"]
+
+[node name="UniformBuilder" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_onbbx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Uniform Builder"
+
+[node name="FileSelector" parent="VBoxContainer" instance=ExtResource("1_53nhg")]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+
+[node name="PatchesTitle" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "CfgPatches Title"
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="InheritanceButtons" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="InheritanceBase" type="Button" parent="VBoxContainer/VBoxContainer/InheritanceButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Base Inheritance"
+
+[node name="InheritanceWeapons" type="Button" parent="VBoxContainer/VBoxContainer/InheritanceButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CfgWeapons Inheritance"
+
+[node name="InheritanceVehicles" type="Button" parent="VBoxContainer/VBoxContainer/InheritanceButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CfgVehicles Inheritance"
+
+[node name="InheritanceData" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BaseData" type="TextEdit" parent="VBoxContainer/VBoxContainer/InheritanceData"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="WeaponData" type="TextEdit" parent="VBoxContainer/VBoxContainer/InheritanceData"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="VehicleData" type="TextEdit" parent="VBoxContainer/VBoxContainer/InheritanceData"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="Export" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Export"
+
+[connection signal="text_changed" from="VBoxContainer/PatchesTitle" to="." method="_on_patches_title_text_changed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/InheritanceButtons/InheritanceBase" to="." method="_on_inheritance_base_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/InheritanceButtons/InheritanceWeapons" to="." method="_on_inheritance_weapons_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/InheritanceButtons/InheritanceVehicles" to="." method="_on_inheritance_vehicles_pressed"]
+[connection signal="pressed" from="VBoxContainer/Export" to="." method="_on_export_pressed"]

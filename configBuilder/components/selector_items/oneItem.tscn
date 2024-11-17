@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bem7tmncna7rh"]
+
+[ext_resource type="Script" path="res://components/selector_items/one_item.gd" id="1_i6vuk"]
+
+[node name="OneItem" type="HBoxContainer"]
+script = ExtResource("1_i6vuk")
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+text = "X"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Item"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
