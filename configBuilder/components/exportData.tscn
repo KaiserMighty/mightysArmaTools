@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://components/export_data.gd" id="1_aptij"]
 
 [node name="ExportData" type="Window"]
+process_mode = 3
 title = "Export Data"
 initial_position = 2
 size = Vector2i(600, 600)
@@ -18,9 +19,20 @@ grow_vertical = 2
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+editable = false
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+
+[node name="Close" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Close"
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[node name="Copy" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Copy"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Close" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Copy" to="." method="_on_copy_button_pressed"]

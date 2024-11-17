@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://components/one_selector.gd" id="1_bkmgu"]
 
 [node name="OneItemSelector" type="Window"]
+process_mode = 3
 title = "Title"
 initial_position = 2
 size = Vector2i(400, 400)

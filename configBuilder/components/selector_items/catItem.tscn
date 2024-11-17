@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://eny6o5hq4yw5"]
+
+[ext_resource type="Script" path="res://components/selector_items/cat_item.gd" id="1_43fmo"]
+
+[node name="catItem" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_43fmo")
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+text = "X"
+
+[node name="DisplayName" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Display Name"
+
+[node name="ClassName" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Class Name"
+
+[node name="Resource" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Resource"
+
+[node name="Advanced" type="Button" parent="."]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+text = "+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="text_changed" from="DisplayName" to="." method="_on_display_name_text_changed"]
+[connection signal="text_changed" from="ClassName" to="." method="_on_class_name_text_changed"]
+[connection signal="text_changed" from="Resource" to="." method="_on_resource_text_changed"]
+[connection signal="pressed" from="Advanced" to="." method="_on_advanced_pressed"]

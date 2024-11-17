@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuontu7v41hxg"]
+
+[ext_resource type="Script" path="res://components/category.gd" id="1_nu3vv"]
+
+[node name="Category" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+script = ExtResource("1_nu3vv")
+
+[node name="CategoryTitle" type="LineEdit" parent="."]
+layout_mode = 2
+placeholder_text = "Title"
+
+[node name="CategorySelect" type="LineEdit" parent="."]
+layout_mode = 2
+placeholder_text = "hiddenSelection"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="CategoryEdit" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Edit"
+
+[node name="CategoryDel" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Delete"
+
+[node name="CategoryData" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+placeholder_text = "Empty"
+editable = false
+
+[connection signal="text_changed" from="CategoryTitle" to="." method="_on_category_title_text_changed"]
+[connection signal="text_changed" from="CategorySelect" to="." method="_on_category_select_text_changed"]
+[connection signal="pressed" from="HBoxContainer/CategoryEdit" to="." method="_on_category_edit_pressed"]
+[connection signal="pressed" from="HBoxContainer/CategoryDel" to="." method="_on_category_del_pressed"]

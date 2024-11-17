@@ -1,6 +1,7 @@
 extends Window
 
 @onready var v_box_container = $VBoxContainer/ScrollContainer/VBoxContainer
+
 const ONE_ITEM = preload("res://components/selector_items/oneItem.tscn")
 
 
