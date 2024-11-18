@@ -35,83 +35,131 @@ text = "Uniform Builder"
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 
-[node name="PatchesTitle" type="LineEdit" parent="ScrollContainer/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
+columns = 3
+
+[node name="PatchesTitle" type="LineEdit" parent="ScrollContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "CfgPatches Title"
-alignment = 1
 
-[node name="ClassPrefix" type="LineEdit" parent="ScrollContainer/VBoxContainer"]
+[node name="ClassPrefix" type="LineEdit" parent="ScrollContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "Class Prefix"
-alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="DisplayPrefix" type="LineEdit" parent="ScrollContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Display Prefix"
+
+[node name="AuthorField" type="LineEdit" parent="ScrollContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Author"
+
+[node name="Picture" type="LineEdit" parent="ScrollContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "UI Picture"
+
+[node name="DroppedModel" type="LineEdit" parent="ScrollContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Dropped Model"
+
+[node name="VBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="InheritanceButtons" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/VBoxContainer"]
+[node name="Base" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="InheritanceBase" type="Button" parent="ScrollContainer/VBoxContainer/VBoxContainer/InheritanceButtons"]
+[node name="InheritanceBase" type="Button" parent="ScrollContainer/VBoxContainer/VBoxContainer/Base"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Base Inheritance"
 
-[node name="InheritanceWeapons" type="Button" parent="ScrollContainer/VBoxContainer/VBoxContainer/InheritanceButtons"]
+[node name="BaseData" type="TextEdit" parent="ScrollContainer/VBoxContainer/VBoxContainer/Base"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="Weapon" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InheritanceWeapons" type="Button" parent="ScrollContainer/VBoxContainer/VBoxContainer/Weapon"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CfgWeapons Inheritance"
 
-[node name="InheritanceVehicles" type="Button" parent="ScrollContainer/VBoxContainer/VBoxContainer/InheritanceButtons"]
+[node name="WeaponData" type="TextEdit" parent="ScrollContainer/VBoxContainer/VBoxContainer/Weapon"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="WeaponInherit" type="OptionButton" parent="ScrollContainer/VBoxContainer/VBoxContainer/Weapon"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+
+[node name="Vehicle" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InheritanceVehicles" type="Button" parent="ScrollContainer/VBoxContainer/VBoxContainer/Vehicle"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CfgVehicles Inheritance"
 
-[node name="ModelsButton" type="Button" parent="ScrollContainer/VBoxContainer/VBoxContainer/InheritanceButtons"]
+[node name="VehicleData" type="TextEdit" parent="ScrollContainer/VBoxContainer/VBoxContainer/Vehicle"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="VehicleInherit" type="OptionButton" parent="ScrollContainer/VBoxContainer/VBoxContainer/Vehicle"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+
+[node name="Models" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ModelsButton" type="Button" parent="ScrollContainer/VBoxContainer/VBoxContainer/Models"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Models"
 
-[node name="InheritanceData" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/VBoxContainer"]
+[node name="ModelsData" type="TextEdit" parent="ScrollContainer/VBoxContainer/VBoxContainer/Models"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="BaseData" type="TextEdit" parent="ScrollContainer/VBoxContainer/VBoxContainer/InheritanceData"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-editable = false
-context_menu_enabled = false
-shortcut_keys_enabled = false
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
-middle_mouse_paste_enabled = false
-
-[node name="WeaponData" type="TextEdit" parent="ScrollContainer/VBoxContainer/VBoxContainer/InheritanceData"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-editable = false
-context_menu_enabled = false
-shortcut_keys_enabled = false
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
-middle_mouse_paste_enabled = false
-
-[node name="VehicleData" type="TextEdit" parent="ScrollContainer/VBoxContainer/VBoxContainer/InheritanceData"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-editable = false
-context_menu_enabled = false
-shortcut_keys_enabled = false
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
-middle_mouse_paste_enabled = false
-
-[node name="ModelsData" type="TextEdit" parent="ScrollContainer/VBoxContainer/VBoxContainer/InheritanceData"]
-layout_mode = 2
-size_flags_horizontal = 3
 editable = false
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer"]
@@ -130,11 +178,15 @@ text = "+"
 layout_mode = 2
 text = "Export"
 
-[connection signal="text_changed" from="ScrollContainer/VBoxContainer/PatchesTitle" to="." method="_on_patches_title_text_changed"]
-[connection signal="text_changed" from="ScrollContainer/VBoxContainer/ClassPrefix" to="." method="_on_class_prefix_text_changed"]
-[connection signal="pressed" from="ScrollContainer/VBoxContainer/VBoxContainer/InheritanceButtons/InheritanceBase" to="." method="_on_inheritance_base_pressed"]
-[connection signal="pressed" from="ScrollContainer/VBoxContainer/VBoxContainer/InheritanceButtons/InheritanceWeapons" to="." method="_on_inheritance_weapons_pressed"]
-[connection signal="pressed" from="ScrollContainer/VBoxContainer/VBoxContainer/InheritanceButtons/InheritanceVehicles" to="." method="_on_inheritance_vehicles_pressed"]
-[connection signal="pressed" from="ScrollContainer/VBoxContainer/VBoxContainer/InheritanceButtons/ModelsButton" to="." method="_on_modelsbutton_pressed"]
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/GridContainer/PatchesTitle" to="." method="_on_patches_title_text_changed"]
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/GridContainer/ClassPrefix" to="." method="_on_class_prefix_text_changed"]
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/GridContainer/DisplayPrefix" to="." method="_on_display_title_text_changed"]
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/GridContainer/AuthorField" to="." method="_on_author_field_text_changed"]
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/GridContainer/Picture" to="." method="_on_picture_text_changed"]
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/GridContainer/DroppedModel" to="." method="_on_dropped_model_text_changed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/VBoxContainer/Base/InheritanceBase" to="." method="_on_inheritance_base_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/VBoxContainer/Weapon/InheritanceWeapons" to="." method="_on_inheritance_weapons_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/VBoxContainer/Vehicle/InheritanceVehicles" to="." method="_on_inheritance_vehicles_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/VBoxContainer/Models/ModelsButton" to="." method="_on_modelsbutton_pressed"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/ScrollContainer/HBoxContainer/AddCat" to="." method="_on_add_cat_pressed"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/Export" to="." method="_on_export_pressed"]

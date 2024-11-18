@@ -2,6 +2,7 @@ extends VBoxContainer
 
 @onready var category_title = $CategoryTitle
 @onready var category_data = $CategoryData
+@onready var category_select = $CategorySelect
 
 const CATEGORY_EDIT = preload("res://components/category_edit.tscn")
 
@@ -40,11 +41,16 @@ func _on_category_edit_pressed():
 
 func load_data(load_title, load_int, load_data1, load_data2):
 	cat_title = load_title
+	category_title.text = cat_title
 	internal_title = load_int
+	category_select.text = internal_title
 	internal_data = load_data1
 	internal_data_advanced = load_data2
 	update_display_data()
 
 func update_display_data():
 	if internal_data.size() > 0:
-		category_data.text = "\n".join(internal_data)
+		var data = PackedStringArray([])
+		for n in internal_data.size()/3:
+			data.append(internal_data[3*n+1])
+		category_data.text = "\n".join(data)

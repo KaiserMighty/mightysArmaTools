@@ -1,13 +1,15 @@
 extends Control
 
-@onready var models_data = $ScrollContainer/VBoxContainer/VBoxContainer/InheritanceData/ModelsData
-@onready var models_button = $ScrollContainer/VBoxContainer/VBoxContainer/InheritanceButtons/ModelsButton
-@onready var base_data = $ScrollContainer/VBoxContainer/VBoxContainer/InheritanceData/BaseData
-@onready var weapon_data = $ScrollContainer/VBoxContainer/VBoxContainer/InheritanceData/WeaponData
-@onready var vehicle_data = $ScrollContainer/VBoxContainer/VBoxContainer/InheritanceData/VehicleData
-@onready var inheritance_base = $ScrollContainer/VBoxContainer/VBoxContainer/InheritanceButtons/InheritanceBase
-@onready var inheritance_weapons = $ScrollContainer/VBoxContainer/VBoxContainer/InheritanceButtons/InheritanceWeapons
-@onready var inheritance_vehicles = $ScrollContainer/VBoxContainer/VBoxContainer/InheritanceButtons/InheritanceVehicles
+@onready var models_data = $ScrollContainer/VBoxContainer/VBoxContainer/Models/ModelsData
+@onready var models_button = $ScrollContainer/VBoxContainer/VBoxContainer/Models/ModelsButton
+@onready var base_data = $ScrollContainer/VBoxContainer/VBoxContainer/Base/BaseData
+@onready var inheritance_base = $ScrollContainer/VBoxContainer/VBoxContainer/Base/InheritanceBase
+@onready var weapon_data = $ScrollContainer/VBoxContainer/VBoxContainer/Weapon/WeaponData
+@onready var inheritance_weapons = $ScrollContainer/VBoxContainer/VBoxContainer/Weapon/InheritanceWeapons
+@onready var vehicle_data = $ScrollContainer/VBoxContainer/VBoxContainer/Vehicle/VehicleData
+@onready var inheritance_vehicles = $ScrollContainer/VBoxContainer/VBoxContainer/Vehicle/InheritanceVehicles
+@onready var weapon_inherit = $ScrollContainer/VBoxContainer/VBoxContainer/Weapon/WeaponInherit
+@onready var vehicle_inherit = $ScrollContainer/VBoxContainer/VBoxContainer/Vehicle/VehicleInherit
 @onready var h_box_container = $ScrollContainer/VBoxContainer/ScrollContainer/HBoxContainer
 
 const ONE_SELECTOR = preload("res://components/oneSelector.tscn")
@@ -15,10 +17,16 @@ const EXPORT_DATA = preload("res://components/exportData.tscn")
 const CATEGORY = preload("res://components/category.tscn")
 
 var patches_title : String = ""
+var author : String = ""
 var class_prefix : String = ""
+var display_prefix : String = ""
+var picture : String = ""
+var dropped_model : String = "\\A3\\Characters_F\\Common\\Suitpacks\\suitpack_blufor_diver"
 var base_inheritance = PackedStringArray(["ItemCore"])
 var weapon_inheritance = PackedStringArray(["InventoryItem_Base_F", "ItemCore", "UniformItem", "Uniform_Base"])
 var vehicle_inheritance = PackedStringArray(["B_Soldier_F", "B_Soldier_base_F", "B_Soldier_diver_base_F"])
+var weapon_inherit_class : String = "Uniform_Base"
+var vehicle_inherit_class : String = "B_Soldier_base_F"
 var models = PackedStringArray([])
 var category_data : Array = []
 
@@ -28,6 +36,9 @@ func _ready():
 	weapon_data.text = "\n".join(weapon_inheritance)
 	vehicle_data.text = "\n".join(vehicle_inheritance)
 	models_data.text = "\n".join(models)
+	weapon_inheritance_dropdown(weapon_inheritance, weapon_inherit_class)
+	vehicle_inheritance_dropdown(vehicle_inheritance, vehicle_inherit_class)
+	$ScrollContainer/VBoxContainer/GridContainer/DroppedModel.text = dropped_model
 
 
 func _on_patches_title_text_changed(new_text):
@@ -36,6 +47,22 @@ func _on_patches_title_text_changed(new_text):
 
 func _on_class_prefix_text_changed(new_text):
 	class_prefix = new_text
+
+
+func _on_author_field_text_changed(new_text):
+	author = new_text
+
+
+func _on_display_title_text_changed(new_text):
+	display_prefix = new_text
+
+
+func _on_picture_text_changed(new_text):
+	picture = new_text
+
+
+func _on_dropped_model_text_changed(new_text):
+	dropped_model = new_text
 
 
 func _on_inheritance_base_pressed():
@@ -94,7 +121,11 @@ func _on_export_pressed():
 	update_categories()
 	var export_data : Dictionary = {
 		"patches_title" : patches_title,
+		"author" : author,
 		"class_prefix" : class_prefix,
+		"display_prefix" : display_prefix,
+		"picture" : picture,
+		"dropped_model" : dropped_model,
 		"base_inheritance" : base_inheritance,
 		"weapon_inheritance" : weapon_inheritance,
 		"vehicle_inheritance" : vehicle_inheritance,
@@ -115,6 +146,20 @@ func _on_add_cat_pressed():
 	h_box_container.move_child(item, h_box_container.get_child_count() - 2)
 
 
+func weapon_inheritance_dropdown(data, selection):
+	for n in data.size():
+		weapon_inherit.add_item(data[n])
+		if data[n] == selection:
+			weapon_inherit.select(n)
+
+
+func vehicle_inheritance_dropdown(data, selection):
+	for n in data.size():
+		vehicle_inherit.add_item(data[n])
+		if data[n] == selection:
+			vehicle_inherit.select(n)
+
+
 func update_categories():
 	category_data.clear()
 	for n in h_box_container.get_child_count()-1:
@@ -129,8 +174,12 @@ func update_categories():
 
 
 func data_loaded():
-	$ScrollContainer/VBoxContainer/PatchesTitle.text = patches_title
-	$ScrollContainer/VBoxContainer/ClassPrefix.text = class_prefix
+	$ScrollContainer/VBoxContainer/GridContainer/PatchesTitle.text = patches_title
+	$ScrollContainer/VBoxContainer/GridContainer/ClassPrefix.text = class_prefix
+	$ScrollContainer/VBoxContainer/GridContainer/DisplayPrefix.text = display_prefix
+	$ScrollContainer/VBoxContainer/GridContainer/AuthorField.text = author
+	$ScrollContainer/VBoxContainer/GridContainer/Picture.text = picture
+	$ScrollContainer/VBoxContainer/GridContainer/DroppedModel.text = dropped_model
 	models_data.text = "\n".join(models)
 	base_data.text = "\n".join(base_inheritance)
 	weapon_data.text = "\n".join(weapon_inheritance)
@@ -139,6 +188,10 @@ func data_loaded():
 	inheritance_base.set_meta("data", base_inheritance)
 	inheritance_weapons.set_meta("data", weapon_inheritance)
 	inheritance_vehicles.set_meta("data", vehicle_inheritance)
+	weapon_inheritance_dropdown(weapon_inheritance, weapon_inherit_class)
+	vehicle_inheritance_dropdown(vehicle_inheritance, vehicle_inherit_class)
+	for n in h_box_container.get_child_count()-1:
+		h_box_container.get_child(n).queue_free()
 	for n in category_data.size():
 		var item = CATEGORY.instantiate()
 		h_box_container.add_child(item)
