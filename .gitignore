@@ -2,3 +2,4 @@
 *.import
 
 batchRepathing/paths.txt
+radioBuilder/ffmpeg.exe
