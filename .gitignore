@@ -4,3 +4,8 @@
 batchRepathing/paths.txt
 radioBuilder/ffmpeg.exe
 ocapDownloader/credentials.json
+dependencyCuller/dependencies/*
+dependencyCuller/target/*
+dependencyCuller/output.txt
+
+!README.md
