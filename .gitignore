@@ -7,5 +7,7 @@ ocapDownloader/credentials.json
 dependencyCuller/dependencies/*
 dependencyCuller/target/*
 dependencyCuller/output.txt
+radioBuilder/music/*
+radioBuilder/music/output.txt
 
 !README.md
